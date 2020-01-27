@@ -16,17 +16,17 @@
 
 ### init
 > $(".mypages").pagination({ <br>
->            currentpage: 1,<br>
->            totalPageCount: 45,<br>
->            maxBtnCount: 5,<br>
->            align: 'center',<br> 
->            nextPrevBtnShow: true,<br>
->            firstLastBtnShow: true,<br>
->            prevPageName: '<',<br>
->            nextPageName: '>',<br>
->            lastPageName: '<<',<br>
->            firstPageName: '>>',<br>
->            callback: function(pagenumber){ console.log(pagenumber); }<br>
+>            **currentpage:** 1,<br>
+>            **totalPageCount:** 45,<br>
+>            **maxBtnCount:** 5,<br>
+>            **align:** 'center',<br> 
+>            **nextPrevBtnShow:** true,<br>
+>            **firstLastBtnShow:** true,<br>
+>            **prevPageName:** '<',<br>
+>            **nextPageName:** '>',<br>
+>            **lastPageName:** '<<',<br>
+>            **firstPageName:** '>>',<br>
+>            **callback:** function(pagenumber){ console.log(pagenumber); }<br>
 >        });<br>
 
 ### notes:
