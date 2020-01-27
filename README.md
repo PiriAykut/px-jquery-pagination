@@ -41,12 +41,7 @@
 
 
 ### view:
-#### 1.
-![alt text](https://raw.githubusercontent.com/PiriAykut/px-filter-box/master/screenshots/Screenshot_1.png)
+![alt text](https://raw.githubusercontent.com/PiriAykut/px-pagination/master/screenshots/Screenshot_1.png)
 
 <br>
-
-#### 2.
-![alt text](https://raw.githubusercontent.com/PiriAykut/px-filter-box/master/screenshots/Screenshot_2.png)
-
 <br>
