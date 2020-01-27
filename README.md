@@ -17,18 +17,28 @@
 ### init
 > $(".mypages").pagination({ <br>
 >            currentpage: 1,<br>
->            totalPageCount: 10,<br>
+>            totalPageCount: 45,<br>
 >            maxBtnCount: 5,<br>
->            align: 'left', /* (left OR center OR right) */<br> 
->            nextPrevBtnShow: true, /* (true OR false) */<br>
->            firstLastBtnShow: true, /* (true OR false) */<br>
+>            align: 'center',<br> 
+>            nextPrevBtnShow: true,<br>
+>            firstLastBtnShow: true,<br>
 >            prevPageName: '<',<br>
 >            nextPageName: '>',<br>
 >            lastPageName: '<<',<br>
 >            firstPageName: '>>',<br>
 >            callback: function(pagenumber){ console.log(pagenumber); }<br>
 >        });<br>
-<br>
+
+### notes:
+> **currentpage:** default clicked page number on initial load<br>
+> **totalPageCount:** total number of pages<br>
+> **maxBtnCount:** number of page buttons to display<br>
+> **align:** button layout (left OR center OR right)<br>
+> **nextPrevBtnShow:** display of previous and next buttons<br>
+> **firstLastBtnShow:** display of last and first buttons<br>
+> **callback:** callback function return the page number selected in the parameter<br>
+
+
 
 ### view:
 #### 1.
