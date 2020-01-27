@@ -40,7 +40,7 @@
 
 
 ### view:
-![alt text](https://github.com/PiriAykut/px-jquery-pagination/blob/master/screenshots/Screenshot_1.png)
+![alt text](https://raw.githubusercontent.com/PiriAykut/px-jquery-pagination/master/screenshots/Screenshot_1.png)
 
 <br>
 <br>
