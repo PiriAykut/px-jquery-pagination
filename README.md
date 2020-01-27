@@ -3,16 +3,15 @@
 > npm i jquery <br><br>
 > npm i px-jquery-pagination
 
+## css
+> @import "~px-jquery-pagination/px-pagination.css";
+
 
 ## html
 > \<div class="mypages"\>\</div\> <br>
 
-## css
-> @import "~px-jquery-pagination/px-pagination.css";
-
 ## javascript - jquery
 > require('px-jquery-pagination');
-
 
 ### init
 > $(".mypages").pagination({ <br>
