@@ -19,12 +19,9 @@
 >            currentpage: 1,<br>
 >            totalPageCount: 10,<br>
 >            maxBtnCount: 5,<br>
->
 >            align: 'left', /* (left OR center OR right) */<br> 
->
 >            nextPrevBtnShow: true, /* (true OR false) */<br>
 >            firstLastBtnShow: true, /* (true OR false) */<br>
->
 >            prevPageName: '<',<br>
 >            nextPageName: '>',<br>
 >            lastPageName: '<<',<br>
