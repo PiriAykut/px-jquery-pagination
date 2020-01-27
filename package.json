@@ -1,27 +1,27 @@
 {
-  "name": "px-jquery-filter-box",
-  "version": "1.0.4",
-  "description": "filter or sort box with jquery",
-  "main": "px-filter-box.js",
+  "name": "px-jquery-pagination",
+  "version": "1.0.1",
+  "description": "data page pagination (jquery)",
+  "main": "px-pagination.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PiriAykut/px-filter-box.git"
+    "url": "git+https://github.com/PiriAykut/px-jquery-pagination.git"
   },
   "keywords": [
     "px",
-    "filter-box",
-    "sort-box",
-    "input",
-    "select",
+    "pagination",
+    "page",
+    "data page",
+    "paginate",
     "jquery"
   ],
   "author": "Piri AYKUT <piriaykut@hotmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PiriAykut/px-filter-box/issues"
+    "url": "https://github.com/PiriAykut/px-jquery-pagination/issues"
   },
-  "homepage": "https://github.com/PiriAykut/px-filter-box#readme"
+  "homepage": "https://github.com/PiriAykut/px-jquery-pagination#readme"
 }
