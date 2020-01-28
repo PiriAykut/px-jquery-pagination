@@ -20,7 +20,7 @@
 
             callback: null
         }
-        
+
         if (_op !== undefined && _op != null)
             _op = $.extend(defaults, _op);
         else
@@ -42,15 +42,19 @@
         _self.addClass("px-paginate-container").addClass("px-" + _op.align);
         _self.html('');
 
+        if (_op.totalPageCount > _op.maxBtnCount) {
+            _self.append('<span class="px-points d-none" data-point="0">...</span>');
+        }
 
-        _self.append('<span class="px-points d-none" data-point="0">...</span>');
-
-        for (let i = 0; i < _op.maxBtnCount; i++) {
+        for (let i = 0; i < (_op.totalPageCount > _op.maxBtnCount ? _op.maxBtnCount : _op.totalPageCount); i++) {
             _self.append(__templaterow(0, (i + 1), " px-btn-page px-btn-" + i));
         }
 
-        _self.append('<span class="px-points d-none" data-point="1">...</span>');
-        _self.append(__templaterow(_op.totalPageCount, _op.totalPageCount, " px-btn-page"));
+
+        if (_op.totalPageCount > _op.maxBtnCount) {
+            _self.append('<span class="px-points d-none" data-point="1">...</span>');
+            _self.append(__templaterow(_op.totalPageCount, _op.totalPageCount, " px-btn-page"));
+        }
 
         if (_op.nextPrevBtnShow) {
             _self.prepend(__templaterow(0, _op.prevPageName, "px-btn-prev"));
@@ -63,78 +67,89 @@
         }
 
         __calcpagenumber(_op.currentpage);
-        
-        $("body").on("click", ".px-btn[data-page]", function(){
+
+        $("body").on("click", ".px-btn[data-page]", function () {
             __calcpagenumber($(this).attr("data-page"));
         });
 
-        function __templaterow(_pageno, _pagetext, _class = ""){
+        function __templaterow(_pageno, _pagetext, _class = "") {
             return '<span class="px-btn' + (_class != '' ? ' ' + _class : '') + '" data-page="' + _pageno + '">' + _pagetext + '</span>';
         }
         function __calcpagenumber(currentpage) {
-            
-            if ($(".px-btn.selected").attr("data-page") == currentpage){
+
+            if ($(".px-btn.selected").attr("data-page") == currentpage) {
                 return;
             }
 
-            let prev = parseInt(currentpage) - 1;
-            let next = parseInt(currentpage) + 1;
+            let start = 0;
 
-            if (prev < 1) prev = 1;
-            if (next > _op.totalPageCount) next = _op.totalPageCount;
-
-            if (_op.nextPrevBtnShow) {
-                $(".px-btn-prev", _self).attr("data-page", prev);
-                $(".px-btn-next", _self).attr("data-page", next);
-            }
-
-            let _blockchange = ($(".px-btn-page[data-page='" + prev + "']", _self).length == 0 || $(".px-btn-page[data-page='" + next + "']", _self).length == 0);
-            if (_blockchange) {
-                let lastpagenm = (_op.totalPageCount - 1);
-                let start = prev - Math.round(_op.maxBtnCount / 2);
-
-                if ( start < 0){
-                    start = 0;
-                }
-                if((start + _op.maxBtnCount) > lastpagenm){
-                    start = (_op.totalPageCount-1) - _op.maxBtnCount;
-                }
-
-                for (let i = 0; i < _op.maxBtnCount; i++) {
+            if (_op.totalPageCount <= _op.maxBtnCount) {
+                start = 0;
+                for (let i = 0; i < _op.totalPageCount; i++) {
                     start++;
                     $(".px-btn-page.px-btn-" + i, _self).attr("data-page", start).html(start);
                 }
 
-                let blockfirst = parseInt($(".px-btn-page.px-btn-0", _self).attr("data-page"));
-                let blocklast = parseInt($(".px-btn-page.px-btn-" + (_op.maxBtnCount - 1), _self).attr("data-page"));
+            } else {
+                let prev = parseInt(currentpage) - 1;
+                let next = parseInt(currentpage) + 1;
 
-                let pointzero = ".px-points[data-point='0']";
-                let pointone = ".px-points[data-point='1']";
+                if (prev < 1) prev = 1;
+                if (next > _op.totalPageCount) next = _op.totalPageCount;
 
-                if (blockfirst == 1) {
-                    if (!$(pointzero, _self).hasClass("d-none"))
-                        $(pointzero, _self).addClass("d-none");
-                } else {
-                    if ($(pointzero, _self).hasClass("d-none"))
-                        $(pointzero, _self).removeClass("d-none");
+                if (_op.nextPrevBtnShow) {
+                    $(".px-btn-prev", _self).attr("data-page", prev);
+                    $(".px-btn-next", _self).attr("data-page", next);
                 }
 
-                if (blocklast == lastpagenm) {
-                    if (!$(pointone, _self).hasClass("d-none"))
-                        $(pointone, _self).addClass("d-none");
-                } else {
-                    if ($(pointone, _self).hasClass("d-none"))
-                        $(pointone, _self).removeClass("d-none");
+                let _blockchange = ($(".px-btn-page[data-page='" + prev + "']", _self).length == 0 || $(".px-btn-page[data-page='" + next + "']", _self).length == 0);
+                if (_blockchange) {
+                    let lastpagenm = (_op.totalPageCount - 1);
+                    start = prev - Math.round(_op.maxBtnCount / 2);
+
+                    if (start < 0) {
+                        start = 0;
+                    }
+                    if ((start + _op.maxBtnCount) > lastpagenm) {
+                        start = (_op.totalPageCount - 1) - _op.maxBtnCount;
+                    }
+
+                    for (let i = 0; i < _op.maxBtnCount; i++) {
+                        start++;
+                        $(".px-btn-page.px-btn-" + i, _self).attr("data-page", start).html(start);
+                    }
+
+                    let blockfirst = parseInt($(".px-btn-page.px-btn-0", _self).attr("data-page"));
+                    let blocklast = parseInt($(".px-btn-page.px-btn-" + (_op.maxBtnCount - 1), _self).attr("data-page"));
+
+                    let pointzero = ".px-points[data-point='0']";
+                    let pointone = ".px-points[data-point='1']";
+
+                    if (blockfirst == 1) {
+                        if (!$(pointzero, _self).hasClass("d-none"))
+                            $(pointzero, _self).addClass("d-none");
+                    } else {
+                        if ($(pointzero, _self).hasClass("d-none"))
+                            $(pointzero, _self).removeClass("d-none");
+                    }
+
+                    if (blocklast == lastpagenm) {
+                        if (!$(pointone, _self).hasClass("d-none"))
+                            $(pointone, _self).addClass("d-none");
+                    } else {
+                        if ($(pointone, _self).hasClass("d-none"))
+                            $(pointone, _self).removeClass("d-none");
+                    }
                 }
             }
 
             $(".selected", _self).removeClass("selected");
             $(".px-btn-page[data-page=" + currentpage + "]").addClass("selected");
 
-            if (_op.callback != undefined && _op.callback != null){
-                if (_op.callback.length > 0){
+            if (_op.callback != undefined && _op.callback != null) {
+                if (_op.callback.length > 0) {
                     _op.callback(currentpage);
-                }else{
+                } else {
                     _op.callback();
                 }
             }
