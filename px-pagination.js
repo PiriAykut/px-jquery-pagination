@@ -50,6 +50,7 @@
         }
 
         _self.append('<span class="px-points d-none" data-point="1">...</span>');
+        _self.append(__templaterow(_op.totalPageCount, _op.totalPageCount, " px-btn-page"));
 
         if (_op.nextPrevBtnShow) {
             _self.prepend(__templaterow(0, _op.prevPageName, "px-btn-prev"));
@@ -60,7 +61,6 @@
             _self.prepend(__templaterow(1, _op.lastPageName, "px-btn-last"));
             _self.append(__templaterow(_op.totalPageCount, _op.firstPageName, "px-btn-first"));
         }
-
 
         __calcpagenumber(_op.currentpage);
         
@@ -90,13 +90,14 @@
 
             let _blockchange = ($(".px-btn-page[data-page='" + prev + "']", _self).length == 0 || $(".px-btn-page[data-page='" + next + "']", _self).length == 0);
             if (_blockchange) {
+                let lastpagenm = (_op.totalPageCount - 1);
                 let start = prev - Math.round(_op.maxBtnCount / 2);
 
                 if ( start < 0){
                     start = 0;
                 }
-                if((start + _op.maxBtnCount) > _op.totalPageCount){
-                    start = _op.totalPageCount - _op.maxBtnCount;
+                if((start + _op.maxBtnCount) > lastpagenm){
+                    start = (_op.totalPageCount-1) - _op.maxBtnCount;
                 }
 
                 for (let i = 0; i < _op.maxBtnCount; i++) {
@@ -118,7 +119,7 @@
                         $(pointzero, _self).removeClass("d-none");
                 }
 
-                if (blocklast == _op.totalPageCount) {
+                if (blocklast == lastpagenm) {
                     if (!$(pointone, _self).hasClass("d-none"))
                         $(pointone, _self).addClass("d-none");
                 } else {
