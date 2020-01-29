@@ -66,16 +66,16 @@
             _self.append(__templaterow(_op.totalPageCount, _op.firstPageName, "px-btn-first"));
         }
 
-        __calcpagenumber(_op.currentpage);
+        __calcpagenumber(_op.currentpage, true);
 
         $("body").on("click", ".px-btn[data-page]", function () {
-            __calcpagenumber($(this).attr("data-page"));
+            __calcpagenumber($(this).attr("data-page"), false);
         });
 
         function __templaterow(_pageno, _pagetext, _class = "") {
             return '<span class="px-btn' + (_class != '' ? ' ' + _class : '') + '" data-page="' + _pageno + '">' + _pagetext + '</span>';
         }
-        function __calcpagenumber(currentpage) {
+        function __calcpagenumber(currentpage, isfirst) {
 
             if ($(".px-btn.selected").attr("data-page") == currentpage) {
                 return;
@@ -146,7 +146,7 @@
             $(".selected", _self).removeClass("selected");
             $(".px-btn-page[data-page=" + currentpage + "]").addClass("selected");
 
-            if (_op.callback != undefined && _op.callback != null) {
+            if (!isfirst && _op.callback != undefined && _op.callback != null) {
                 if (_op.callback.length > 0) {
                     _op.callback(currentpage);
                 } else {
