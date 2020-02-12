@@ -37,6 +37,10 @@
             _op.align = "left";
         }
 
+        _op.currentpage = Math.ceil(_op.currentpage);
+        _op.maxBtnCount = Math.ceil(_op.maxBtnCount);
+        _op.totalPageCount = Math.ceil(_op.totalPageCount);
+
         _self.attr("data-total", _op.totalPageCount).attr("data-max", _op.maxBtnCount);
 
         _self.addClass("px-paginate-container").addClass("px-" + _op.align);
