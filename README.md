@@ -1,3 +1,8 @@
+## description
+> It provides visuality and ease of use to the Laravel Pagination process.
+
+## description TR
+> Laravel Pagination işlemine görselik ve kullanım kolaylığı sağlar.
 
 ## install
 > npm i jquery <br><br>
